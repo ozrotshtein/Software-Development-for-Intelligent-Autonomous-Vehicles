@@ -1,0 +1,18 @@
+base_global_planner: "navfn/NavfnROS"          # A* / Dijkstra global planner
+base_local_planner:  "dwa_local_planner/DWAPlannerROS"
+
+# Common costmap parameters
+global_costmap:
+  inflation_radius: 0.45
+
+local_costmap:
+  inflation_radius: 0.30
+  update_frequency: 10.0
+  publish_frequency: 10.0
+
+DWAPlannerROS:
+  max_vel_x: 0.26
+  min_vel_x: 0.08
+  yaw_goal_tolerance: 0.05
+  xy_goal_tolerance: 0.10
+  sim_time: 3.0

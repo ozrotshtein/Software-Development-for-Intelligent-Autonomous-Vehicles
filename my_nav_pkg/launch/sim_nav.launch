@@ -1,0 +1,20 @@
+<launch>
+  <!-- 1. Bring up a simple TurtleBot3 world in Gazebo -->
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+
+  <!-- 2. Load a pre-made static map (optional)           -->
+  <!-- <node pkg="map_server" type="map_server" name="map_server"
+        args="$(find turtlebot3_navigation)/maps/map.yaml" /> -->
+
+  <!-- 3. AMCL localization -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen"/>
+
+  <!-- 4. move_base with my own parameters -->
+  <node pkg="move_base" type="move_base" name="move_base" output="screen">
+    <rosparam command="load" file="$(find my_nav_pkg)/config/move_base.yaml"/>
+  </node>
+
+  <!-- 5. RViz with a nice pre-saved layout -->
+  <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_nav.rviz"/>
+</launch>
